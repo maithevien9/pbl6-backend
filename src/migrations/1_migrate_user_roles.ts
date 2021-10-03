@@ -8,7 +8,7 @@ export const migrate = async (client: any, done: any) => {
     { name: 'Admin' },
     { name: 'Manager' },
     { name: 'Cooperator' },
-    { name: 'customer' },
+    { name: 'Customer' },
   ];
 
   await Role.insertMany(roles);

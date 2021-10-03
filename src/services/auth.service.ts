@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import moment from 'moment';
 
 import configs from '../configs';
-import { User, Verify } from '../models';
+import { User, Verify, Role } from '../models';
 import APIError from '../utils/APIError';
 import generateOTP from '../utils/GenerateOTP';
 import sendEmail from '../utils/SendEmail';
@@ -12,7 +12,6 @@ interface IRegisterParams {
   email: string;
   password: string;
   fullName: string;
-  role: string;
 }
 
 class AuthService {
@@ -20,7 +19,6 @@ class AuthService {
     email,
     password,
     fullName,
-    role,
   }: IRegisterParams): Promise<void> => {
     const user = await User.findOne({ email });
 
@@ -36,11 +34,20 @@ class AuthService {
       configs.bcryptSaltRounds,
     );
 
+    const role = await Role.findOne({ name: 'Customer' });
+
+    if (!role) {
+      throw new APIError({
+        message: 'Internal server error',
+        status: httpStatus.INTERNAL_SERVER_ERROR,
+      });
+    }
+
     await User.create({
       email,
       password: passwordHashed,
       fullName,
-      role,
+      role: role._id,
     });
 
     const otp = generateOTP();

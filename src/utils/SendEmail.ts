@@ -17,9 +17,10 @@ const sendEmail = async (email: string, otp: number): Promise<void> => {
   try {
     await sgMail.send(msg);
   } catch (err) {
+    console.log(err);
     throw new APIError({
       message: 'Error Send Email',
-      status: httpStatus.UNAUTHORIZED,
+      status: httpStatus.FORBIDDEN,
     });
   }
 };
