@@ -1,0 +1,9 @@
+const dotenv = require('dotenv');
+dotenv.config();
+const dbUri = process.env.DB_URI;
+
+module.exports = {
+  adapter: "east-mongo",
+  url: dbUri,
+  dir: './src/migrations'
+};

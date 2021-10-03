@@ -1,0 +1,17 @@
+{
+  "presets": ["@babel/env", "@babel/typescript"],
+  "plugins": [
+    ["@babel/transform-runtime"],
+    [
+      "babel-plugin-root-import",
+      {
+        "paths": [
+          {
+            "rootPathSuffix": "./src",
+            "rootPathPrefix": "@/"
+          }
+        ]
+      }
+    ]
+  ]
+}
