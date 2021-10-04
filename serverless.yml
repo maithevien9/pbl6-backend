@@ -1,0 +1,18 @@
+service: pbl6-project
+
+plugins:
+  - serverless-dotenv-plugin
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: production
+  region: eu-central-1
+
+functions:
+  api:
+    handler: build/lambda.universal
+
+    events:
+      - http: ANY {proxy+}
+      - http: ANY /

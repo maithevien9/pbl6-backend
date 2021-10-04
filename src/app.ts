@@ -13,7 +13,7 @@ import errorMiddleware from './middlewares/error';
 import routesV1 from './routes/v1';
 import log from './utils/logger';
 
-const app: Application = express();
+export const app: Application = express();
 const httpServer = http.createServer(app);
 morgan('tiny');
 
