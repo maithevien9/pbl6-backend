@@ -12,6 +12,7 @@ export interface IUser extends Document {
   address: string;
   phoneNumber: string;
   avatar: string;
+  isVerify: boolean;
   createdAt: Date;
   updatedAt: Date;
   comparePassword: (candidatePassword: string) => Promise<boolean>;
@@ -61,6 +62,10 @@ const UserSchema = new Schema(
     phoneNumber: {
       type: String,
     },
+    isVerify: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true },
 );
@@ -77,11 +82,8 @@ UserSchema.methods.transform = function () {
   const fields = [
     '_id',
     'email',
-    'gender',
     'fullName',
     'role',
-    'address',
-    'phoneNumber',
     'avatar',
     'createdAt',
     'updatedAt',

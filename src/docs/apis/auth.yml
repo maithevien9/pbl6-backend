@@ -1,0 +1,91 @@
+tags:
+  name: Auth
+  description: Authentication
+
+/auth/register:
+  post:
+    summary: Register new user
+    tags: [Auth]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/definitions/RegisterRequestBody'
+    responses:
+      '201':
+        description: Success
+
+/auth/verify-email:
+  post:
+    summary: verify email
+    tags: [Auth]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/definitions/VerifyRequestBody'
+    responses:
+      '200':
+        description: Success
+
+/auth/login:
+  post:
+    summary: Login
+    tags: [Auth]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/definitions/LoginRequestBody'
+    responses:
+      '200':
+        description: Success
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/LoginResponsePayload'
+
+# /auth/forgot-password:
+#   post:
+#     summary: forgot password
+#     tags: [Auth]
+#     requestBody:
+#       required: true
+#       content:
+#         application/json:
+#           schema:
+#             $ref: '#/definitions/ForgotPasswordRequestBody'
+#     responses:
+#       '200':
+#         description: Success
+
+# /auth/reset-password:
+#   post:
+#     summary: reset password
+#     tags: [Auth]
+#     requestBody:
+#       required: true
+#       content:
+#         application/json:
+#           schema:
+#             $ref: '#/definitions/ResetPasswordRequestBody'
+#     responses:
+#       '200':
+#         description: Success
+
+/auth/refresh-otp:
+  post:
+    summary: refresh otp
+    tags: [Auth]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/definitions/RefreshOtpRequestBody'
+    responses:
+      '200':
+        description: Success

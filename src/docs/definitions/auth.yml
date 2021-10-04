@@ -1,0 +1,153 @@
+definitions:
+  RegisterRequestBody:
+    type: object
+    required:
+      - email
+      - password
+      - fullName
+    properties:
+      email:
+        type: string
+        format: email
+        description: must be unique
+      password:
+        type: string
+        format: password
+        minLength: 8
+        description: At least one number and one letter
+      firstName:
+        type: string
+      lastName:
+        type: string
+    example:
+      email: maithevien9@gmail.com
+      password: '123456'
+      fullName: 'Mai The Vien'
+
+  VerifyRequestBody:
+    type: object
+    required:
+      - email
+      - otp
+    properties:
+      email:
+        type: string
+        format: email
+        description: must be unique
+      otp:
+        type: string
+        minLength: 6
+        maxLength: 6
+    example:
+      email: maithevien9@gmail.com
+      otp: '123456'
+
+  LoginRequestBody:
+    type: object
+    required:
+      - email
+      - password
+    properties:
+      email:
+        type: string
+        format: email
+        description: must be unique
+      password:
+        type: string
+        format: password
+        minLength: 6
+        description: must be unique
+    example:
+      email: maithevien9@gmail.com
+      password: vien123
+
+  LoginResponsePayload:
+    type: object
+    properties:
+      user:
+        type: object
+        properties:
+          _id:
+            type: string
+          email:
+            type: string
+          fullName:
+            type: string
+          role:
+            type: object
+            properties:
+              _id:
+                type: string
+              name:
+                type: string
+          createdAt:
+            type: string
+            format: date-time
+          updatedAt:
+            type: string
+            format: date-time
+
+      refreshToken:
+        type: string
+
+    example:
+      user:
+        _id: 609b61b9e015e8409de28fc5
+        email: maithevien9@gmail.com
+        fullName: maithevien9@gmail.com
+        role:
+          _id: 609b61b9e015e8409de28fc5
+          email: maithevien9@gmail.com
+        createdAt: 2021-10-03T16:05:39.096Z
+        updatedAt: 2021-10-03T16:05:39.096Z
+
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGIwNTFlOTk0YTI0Zjc1Nzg5MGU4ODUiLCJpYXQiOjE2MjYzNDUyMTIsImV4cCI6MTYyNjQzMTYxMiwidHlwZSI6InJlZnJlc2gifQ.D3YaXfjZvHONhzu5Iolry5eoxzhBFmuiPlPJzYmkKEU'
+
+  ForgotPasswordRequestBody:
+    type: object
+    required:
+      - email
+    properties:
+      email:
+        type: string
+        format: email
+        description: must be unique
+    example:
+      email: user123@gmail.com
+
+  ResetPasswordRequestBody:
+    type: object
+    required:
+      - email
+      - otp
+      - password
+    properties:
+      email:
+        type: string
+        format: email
+        description: must be unique
+      otp:
+        type: string
+        minLength: 6
+        maxLength: 6
+      password:
+        type: string
+        format: password
+        minLength: 8
+        description: At least one number and one letter
+    example:
+      email: maithevien9@gmail.com
+      otp: '123456'
+      password: password1
+
+  RefreshOtpRequestBody:
+    type: object
+    required:
+      - email
+    properties:
+      email:
+        type: string
+        format: email
+        description: must be unique
+    example:
+      email: maithevien9@gmail.com

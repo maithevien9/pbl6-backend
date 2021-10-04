@@ -14,6 +14,7 @@ const {
   SENDGRID_API_KEY,
   EMAIL_ADMIN,
   TEMPLATE_ID_EMAIL,
+  API_END_POINT,
 } = process.env;
 
 const SERVER_HOSTNAME = HOSTNAME || 'localhost';
@@ -46,4 +47,5 @@ export default {
   jwtPrivateKey: JWT_PRIVATE_KEY || 'pbl6@',
   cloudinary: CLOUDINARY,
   sendGrid: SENDGRID,
+  apiEndpoint: API_END_POINT || 'http://localhost:8000/v1',
 };
