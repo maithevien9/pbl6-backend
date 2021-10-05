@@ -5,6 +5,8 @@ tags:
 /roles:
   get:
     summary: get roles
+    security:
+      - bearerAuth: []
     tags: [Role]
 
     responses:
