@@ -27,3 +27,17 @@ export const loginSchema = {
     password: Joi.string().min(6).max(50).required(),
   }),
 };
+
+export const forgotPasswordSchema = {
+  body: Joi.object({
+    email: Joi.string().required().email(),
+  }),
+};
+
+export const resetPasswordSchema = {
+  body: Joi.object({
+    email: Joi.string().required().email(),
+    otp: Joi.string().min(6).max(6).required(),
+    password: Joi.string().min(6).max(50).required(),
+  }),
+};

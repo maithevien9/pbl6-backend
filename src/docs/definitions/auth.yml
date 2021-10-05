@@ -113,7 +113,7 @@ definitions:
         format: email
         description: must be unique
     example:
-      email: user123@gmail.com
+      email: maithevien9@gmail.com
 
   ResetPasswordRequestBody:
     type: object

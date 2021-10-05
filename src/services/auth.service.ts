@@ -24,7 +24,16 @@ interface IRefreshOtpParams {
   email: string;
 }
 
+interface IForgotPasswordParams {
+  email: string;
+}
 interface ILoginParams {
+  email: string;
+  password: string;
+}
+
+interface IResetPasswordParams {
+  otp: string;
   email: string;
   password: string;
 }
@@ -177,6 +186,61 @@ class AuthService {
       user: user.transform(),
       token,
     };
+  };
+
+  static forgotPassword = async ({
+    email,
+  }: IForgotPasswordParams): Promise<void> => {
+    const user = await User.findOne({ email, isVerify: true });
+
+    if (!user) {
+      throw new APIError({
+        message: 'User not found',
+        status: httpStatus.NOT_FOUND,
+      });
+    }
+
+    const otp = generateOTP();
+    const expiredAt = moment().add(5, 'minutes');
+
+    await Verify.create({ email, otp, expiredAt });
+    await sendEmail(email, otp);
+  };
+
+  static resetPassword = async ({
+    otp,
+    email,
+    password,
+  }: IResetPasswordParams): Promise<void> => {
+    const verify = await Verify.findOne({ email }).sort({ _id: -1 }).limit(1);
+
+    if (!verify) {
+      throw new APIError({
+        message: 'User not found',
+        status: httpStatus.NOT_FOUND,
+      });
+    }
+
+    if (verify && verify.otp !== otp) {
+      throw new APIError({
+        message: 'Invalid OTP',
+        status: httpStatus.BAD_REQUEST,
+      });
+    }
+
+    if (moment().isAfter(verify.expiredAt)) {
+      throw new APIError({
+        message: 'OTP code was expired',
+        status: httpStatus.BAD_REQUEST,
+      });
+    }
+
+    const passwordHashed = await bcrypt.hash(
+      password,
+      configs.bcryptSaltRounds,
+    );
+
+    await User.updateOne({ email }, { password: passwordHashed });
   };
 }
 

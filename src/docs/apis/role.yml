@@ -1,0 +1,16 @@
+tags:
+  name: Role
+  description: Role
+
+/roles:
+  get:
+    summary: get roles
+    tags: [Role]
+
+    responses:
+      '200':
+        description: Success
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/GetRolesResponsePayload'

@@ -1,0 +1,18 @@
+definitions:
+  GetRolesResponsePayload:
+    type: array
+    items:
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+
+    example:
+      [
+        { _id: '6159c7d4e08b851f5b90adb0', name: 'Admin' },
+        { _id: '6159c7d4e08b851f5b90adb1', name: 'Manager' },
+        { _id: '6159c7d4e08b851f5b90adb2', name: 'Cooperator' },
+        { _id: '6159c7d4e08b851f5b90adb3', name: 'Customer' },
+      ]

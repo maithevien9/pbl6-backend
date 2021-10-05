@@ -48,33 +48,33 @@ tags:
             schema:
               $ref: '#/definitions/LoginResponsePayload'
 
-# /auth/forgot-password:
-#   post:
-#     summary: forgot password
-#     tags: [Auth]
-#     requestBody:
-#       required: true
-#       content:
-#         application/json:
-#           schema:
-#             $ref: '#/definitions/ForgotPasswordRequestBody'
-#     responses:
-#       '200':
-#         description: Success
+/auth/forgot-password:
+  post:
+    summary: forgot password
+    tags: [Auth]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/definitions/ForgotPasswordRequestBody'
+    responses:
+      '200':
+        description: Success
 
-# /auth/reset-password:
-#   post:
-#     summary: reset password
-#     tags: [Auth]
-#     requestBody:
-#       required: true
-#       content:
-#         application/json:
-#           schema:
-#             $ref: '#/definitions/ResetPasswordRequestBody'
-#     responses:
-#       '200':
-#         description: Success
+/auth/reset-password:
+  post:
+    summary: reset password
+    tags: [Auth]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/definitions/ResetPasswordRequestBody'
+    responses:
+      '200':
+        description: Success
 
 /auth/refresh-otp:
   post:

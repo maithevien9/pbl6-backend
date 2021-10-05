@@ -25,6 +25,16 @@ interface IRequestBodyLogin {
   password: IUser['password'];
 }
 
+interface IRequestBodyForgotPassword {
+  email: IUser['email'];
+}
+
+interface IRequestBodyResetPassword {
+  otp: IVerify['otp'];
+  password: IUser['password'];
+  email: IUser['email'];
+}
+
 class AuthController {
   static register = async (
     req: Request<IRequestBodyRegister, Query, Params>,
@@ -76,6 +86,31 @@ class AuthController {
         user,
         token,
       });
+    } catch (e) {
+      return next(e);
+    }
+  };
+
+  static forgotPassword = async (
+    req: Request<IRequestBodyForgotPassword, Query, Params>,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
+    try {
+      await AuthService.forgotPassword({ ...req.body });
+      res.status(httpStatus.OK).end();
+    } catch (e) {
+      return next(e);
+    }
+  };
+  static resetPassword = async (
+    req: Request<IRequestBodyResetPassword, Query, Params>,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
+    try {
+      await AuthService.resetPassword({ ...req.body });
+      res.status(httpStatus.OK).end();
     } catch (e) {
       return next(e);
     }
