@@ -8,10 +8,6 @@ type IRequestBodyCreateShop = Pick<IShop, 'name' | 'avatar' | 'address'>;
 
 type IRequestBodyUpdateShop = Pick<IShop, 'name' | 'avatar' | 'address'>;
 
-interface IRequestBodyDeleteShop {
-  orderId: string;
-}
-
 class ShopController {
   static create = async (
     req: Request<IRequestBodyCreateShop, Query, Params>,
@@ -38,21 +34,6 @@ class ShopController {
       const shop = await ShopService.update({
         orderId: req.params.id,
         body: req.body,
-      });
-      res.json(shop);
-    } catch (e) {
-      return next(e);
-    }
-  };
-
-  static delete = async (
-    req: Request<IRequestBodyDeleteShop, Query, Params>,
-    res: Response,
-    next: NextFunction,
-  ): Promise<void> => {
-    try {
-      const shop = await ShopService.delete({
-        orderId: req.params.id,
       });
       res.json(shop);
     } catch (e) {

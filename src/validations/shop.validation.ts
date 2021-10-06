@@ -13,15 +13,11 @@ export const updateShopSchema = {
     id: Joi.string().required(),
   }),
   body: Joi.object({
-    name: Joi.string().required(),
-    avatar: Joi.string().required(),
-    address: Joi.string().required(),
-  }),
-};
-
-export const deleteShopSchema = {
-  params: Joi.object({
-    id: Joi.string().required(),
+    name: Joi.string(),
+    avatar: Joi.string(),
+    address: Joi.string(),
+    isDeleted: Joi.boolean(),
+    isAccept: Joi.boolean(),
   }),
 };
 

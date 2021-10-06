@@ -1,0 +1,80 @@
+definitions:
+  GetShopsResponsePayload:
+    type: array
+    items:
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        address:
+          type: string
+        avatar:
+          type: string
+
+  CreateShopRequestBody:
+    type: object
+    required:
+      - name
+      - address
+      - avatar
+    properties:
+      name:
+        type: string
+      address:
+        type: string
+      avatar:
+        type: string
+    example:
+      name: maithevien9@gmail.com
+      address: 'Da Nang - Viet Nam'
+      avatar: 'https://res.cloudinary.com/dfi8bluhn/image/upload/v1633545399/pbl6/1633545389641-135740738_1373403023006079_7324022155819411224_n_lw8fmg.jpg'
+
+  CreateShopsResponsePayload:
+    type: object
+    required:
+      - _id
+      - name
+      - address
+      - avatar
+    properties:
+      _id:
+        type: string
+      name:
+        type: string
+      address:
+        type: string
+      avatar:
+        type: string
+    example:
+      _id: 615dedda308551667fb8c3aa
+      name: maithevien9@gmail.com
+      address: 'Da Nang - Viet Nam'
+      avatar: 'https://res.cloudinary.com/dfi8bluhn/image/upload/v1633545399/pbl6/1633545389641-135740738_1373403023006079_7324022155819411224_n_lw8fmg.jpg'
+
+  UpdateShopRequestBody:
+    type: object
+    required:
+      - name
+      - address
+      - avatar
+      - isAccept
+      - isDeleted
+    properties:
+      name:
+        type: string
+      address:
+        type: string
+      avatar:
+        type: string
+      isAccept:
+        type: boolean
+      isDeleted:
+        type: boolean
+    example:
+      name: maithevien9@gmail.com
+      address: 'Da Nang - Viet Nam'
+      avatar: 'https://res.cloudinary.com/dfi8bluhn/image/upload/v1633545399/pbl6/1633545389641-135740738_1373403023006079_7324022155819411224_n_lw8fmg.jpg'
+      isDeleted: false
+      isAccept: true

@@ -12,10 +12,6 @@ interface IUpdateShopParams {
   body: Pick<IShop, 'name' | 'avatar' | 'address'>;
 }
 
-interface IDeleteShopParams {
-  orderId: string;
-}
-
 interface IGetShopParams {
   user: IUser;
   pagination: Express.Pagination;
@@ -51,19 +47,6 @@ class ShopService {
     }
 
     return orderUpdated;
-  };
-
-  static delete = async ({ orderId }: IDeleteShopParams): Promise<string> => {
-    const shop = await Shop.findByIdAndUpdate(orderId, { isDeleted: true });
-
-    if (!shop) {
-      throw new APIError({
-        message: 'Shop not found',
-        status: httpStatus.NOT_FOUND,
-      });
-    }
-
-    return shop._id;
   };
 
   static getAll = async ({

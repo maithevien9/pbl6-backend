@@ -1,0 +1,75 @@
+tags:
+  name: Shop
+  description: Shop
+
+/shops:
+  get:
+    summary: get shops
+    security:
+      - bearerAuth: []
+    tags: [Shop]
+    parameters:
+      - in: query
+        name: limit
+        schema:
+          type: number
+      - in: query
+        name: page
+        schema:
+          type: number
+
+    responses:
+      '200':
+        description: Success
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/GetShopsResponsePayload'
+
+  post:
+    summary: create shops
+    security:
+      - bearerAuth: []
+    tags: [Shop]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/definitions/CreateShopRequestBody'
+
+    responses:
+      '200':
+        description: Success
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/CreateShopsResponsePayload'
+
+/shops/{id}:
+  put:
+    summary: update shops
+    security:
+      - bearerAuth: []
+    tags: [Shop]
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        example: 60e687753b913a84e8787519
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/definitions/UpdateShopRequestBody'
+
+    responses:
+      '200':
+        description: Success
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/CreateShopsResponsePayload'

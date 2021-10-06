@@ -55,3 +55,21 @@ components:
           type: string
         name:
           type: string
+
+    shop:
+      type: object
+      required:
+        - name
+        - address
+        - avatar
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        avatar:
+          type: string
+        isDeleted:
+          type: boolean
+        isAccept:
+          type: boolean

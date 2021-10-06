@@ -6,7 +6,6 @@ import { AuthMiddleware } from '../../middlewares';
 import {
   createShopSchema,
   updateShopSchema,
-  deleteShopSchema,
   getShopsSchema,
 } from '../../validations/shop.validation';
 
@@ -28,10 +27,6 @@ router
   .put(
     [AuthMiddleware.requireAuth, validate(updateShopSchema)],
     ShopController.update,
-  )
-  .delete(
-    [AuthMiddleware.requireAuth, validate(deleteShopSchema)],
-    ShopController.delete,
   );
 
 export default router;
