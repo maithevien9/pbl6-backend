@@ -12,3 +12,6 @@ export type { IUser, IGender, IUserTransformed } from './user.model';
 
 export { default as Verify } from './verify.model';
 export type { IVerify } from './verify.model';
+
+export { default as Shop } from './shop';
+export type { IShop } from './shop';

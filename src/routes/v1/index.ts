@@ -5,6 +5,7 @@ import authRoute from './auth.route';
 import docRouter from './docs.route';
 import category from './category.route';
 import uploadRoute from './upload.route';
+import shopRoute from './shop.route';
 
 const router = express.Router();
 
@@ -13,5 +14,6 @@ router.use('/auth', authRoute);
 router.use('/docs', docRouter);
 router.use('/categories', category);
 router.use('/uploads', uploadRoute);
+router.use('/shops', shopRoute);
 
 export default router;
