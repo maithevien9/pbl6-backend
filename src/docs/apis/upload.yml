@@ -1,0 +1,45 @@
+tags:
+  name: Upload
+  description: Upload Image
+
+/uploads/single:
+  post:
+    summary: Upload single
+    security:
+      - bearerAuth: []
+    tags: [Upload]
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            $ref: '#/definitions/UploadSingleRequestBody'
+
+    responses:
+      '200':
+        description: Success
+        content:
+          text/plain:
+            schema:
+              $ref: '#/definitions/UploadSingleResponsePayload'
+
+/uploads/multiple:
+  post:
+    summary: Upload multiple
+    security:
+      - bearerAuth: []
+    tags: [Upload]
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            $ref: '#/definitions/UploadMultipleRequestBody'
+
+    responses:
+      '200':
+        description: Success
+        content:
+          text/plain:
+            schema:
+              $ref: '#/definitions/UploadMultipleResponsePayload'

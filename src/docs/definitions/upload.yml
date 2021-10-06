@@ -1,0 +1,41 @@
+definitions:
+  UploadSingleRequestBody:
+    type: object
+    required:
+      - photo
+    properties:
+      photo:
+        type: string
+        format: binary
+
+  UploadSingleResponsePayload:
+    type: object
+    required:
+      - url
+    properties:
+      url:
+        type: string
+    example:
+      url: https://res.cloudinary.com/whiteboardproject/image/upload/v1621310232/images/wimtss8zjbkxboi1iwrq.jpg
+
+  UploadMultipleRequestBody:
+    type: object
+    required:
+      - photo
+    properties:
+      photo:
+        type: array
+        items:
+          type: string
+          format: binary
+
+  UploadMultipleResponsePayload:
+    type: array
+    items:
+      type: string
+
+    example:
+      [
+        'https://res.cloudinary.com/dfi8bluhn/image/upload/v1633541500/pbl6/1633541491425-86982415_1123260071353710_4516564982585884672_n_ldtty0.jpg',
+        'https://res.cloudinary.com/dfi8bluhn/image/upload/v1633541511/pbl6/1633541491431-135740738_1373403023006079_7324022155819411224_n_hmtfvh.jpg',
+      ]

@@ -42,7 +42,7 @@ const SENDGRID = {
 
 export default {
   server: SERVER,
-  dbUri: DB_URI || 'mongodb://localhost:27017/monla',
+  dbUri: DB_URI || 'mongodb://localhost:27017/oneTech',
   bcryptSaltRounds: 10,
   jwtPrivateKey: JWT_PRIVATE_KEY || 'pbl6@',
   cloudinary: CLOUDINARY,

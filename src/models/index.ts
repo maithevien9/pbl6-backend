@@ -4,6 +4,9 @@ export type { IRole } from './role.model';
 export { default as Category } from './category';
 export type { ICategory } from './category';
 
+export { default as Product } from './product';
+export type { IProduct } from './product';
+
 export { default as User, GENDER } from './user.model';
 export type { IUser, IGender, IUserTransformed } from './user.model';
 
