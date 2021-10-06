@@ -1,0 +1,18 @@
+tags:
+  name: Category
+  description: Category
+
+/categories:
+  get:
+    summary: get categories
+    security:
+      - bearerAuth: []
+    tags: [Category]
+
+    responses:
+      '200':
+        description: Success
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/GetCategoriesResponsePayload'

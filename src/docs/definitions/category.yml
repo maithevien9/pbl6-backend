@@ -1,0 +1,25 @@
+definitions:
+  GetCategoriesResponsePayload:
+    type: array
+    items:
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+
+    example:
+      [
+        { _id: '6159c7d4e08b851f5b90adb0', name: 'Thiết Bị Điện Tử' },
+        {
+          _id: '6159c7d4e08b851f5b90adb1',
+          name: 'TV & Thiết Bị Điện Gia Dụng',
+        },
+        { _id: '6159c7d4e08b851f5b90adb2', name: 'Sức Khoẻ & Làm Đẹp' },
+        { _id: '6159c7d4e08b851f5b90adb3', name: 'Siêu Thị Tạp Hoá' },
+        { _id: '6159c7d4e08b851f5b90adb4', name: 'Hàng Gia Dụng Và Đời Sống' },
+        { _id: '6159c7d4e08b851f5b90adb5', name: 'Hàng Mẹ, Bé & Đồ Chơi' },
+        { _id: '6159c7d4e08b851f5b90adb6', name: 'Thời Trang Nữ' },
+        { _id: '6159c7d4e08b851f5b90adb7', name: 'Thời Trang Nam' },
+      ]

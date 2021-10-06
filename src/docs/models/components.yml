@@ -45,3 +45,13 @@ components:
           type: string
         name:
           type: string
+
+    Category:
+      type: object
+      required:
+        - name
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
