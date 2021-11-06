@@ -13,7 +13,6 @@ interface IUpdateShopParams {
 }
 
 interface IGetShopParams {
-  user: IUser;
   pagination: Express.Pagination;
 }
 
@@ -49,13 +48,11 @@ class ShopService {
     return orderUpdated;
   };
 
-  static getAll = async ({
-    user,
-    pagination,
-  }: IGetShopParams): Promise<IShop[]> => {
+  static getAll = async ({ pagination }: IGetShopParams): Promise<IShop[]> => {
     const { limit, skip } = pagination;
 
-    return Shop.find({ user: user._id })
+    return Shop.find()
+      .populate('user')
       .limit(limit)
       .skip(skip)
       .sort({ createdAt: -1 })

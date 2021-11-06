@@ -7,7 +7,6 @@ export interface IProduct extends Document {
   avatar: string;
   photos: string[];
   shop: string;
-  user: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -23,7 +22,8 @@ const ProductSchema = new Schema(
       required: true,
     },
     category: {
-      type: String,
+      type: 'ObjectId',
+      ref: 'Category',
       required: true,
     },
     avatar: {
@@ -35,9 +35,14 @@ const ProductSchema = new Schema(
         type: String,
       },
     ],
-    user: {
-      type: String,
+    shop: {
+      type: 'ObjectId',
+      ref: 'Shop',
       required: true,
+    },
+    isDeleted: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true },

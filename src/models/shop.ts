@@ -34,7 +34,8 @@ const ShopSchema = new Schema(
       default: false,
     },
     user: {
-      type: String,
+      type: 'ObjectId',
+      ref: 'User',
       required: true,
     },
   },

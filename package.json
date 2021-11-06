@@ -7,9 +7,9 @@
     "dev": "nodemon src/app.ts",
     "build": "tsc -p .",
     "start": "node build/src/app.js",
+    "deploy": "serverless deploy",
     "prepare": "husky install",
     "deploy-gcp": "gcloud app deploy",
-    "logs-gcp": "gcloud app logs tail -s default",
     "lint-staged": "lint-staged",
     "migrate:up": "ts-node $(which east) migrate --migration-extension ts",
     "migrate:down": "ts-node $(which east) rollback --migration-extension ts"

@@ -1,13 +1,15 @@
 import express from 'express';
 import { validate } from 'express-validation';
 
-import { ShopController } from '../../controllers';
+import { ShopController, ProductController } from '../../controllers';
 import { AuthMiddleware } from '../../middlewares';
 import {
   createShopSchema,
   updateShopSchema,
   getShopsSchema,
 } from '../../validations/shop.validation';
+
+import { getByShopSchema } from '../../validations/product.validation';
 
 const router = express.Router();
 
@@ -28,5 +30,9 @@ router
     [AuthMiddleware.requireAuth, validate(updateShopSchema)],
     ShopController.update,
   );
+
+router
+  .route('/:id/products')
+  .get([validate(getByShopSchema)], ProductController.getByShop);
 
 export default router;

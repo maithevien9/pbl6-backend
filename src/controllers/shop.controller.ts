@@ -48,7 +48,6 @@ class ShopController {
   ): Promise<void> => {
     try {
       const shops = await ShopService.getAll({
-        user: req.user,
         pagination: {
           limit: Number(req.query.limit),
           skip: req.skip || 0,

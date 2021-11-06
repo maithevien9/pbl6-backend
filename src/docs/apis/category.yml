@@ -5,8 +5,6 @@ tags:
 /categories:
   get:
     summary: get categories
-    security:
-      - bearerAuth: []
     tags: [Category]
 
     responses:
