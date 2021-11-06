@@ -15,3 +15,6 @@ export type { IVerify } from './verify.model';
 
 export { default as Shop } from './shop';
 export type { IShop } from './shop';
+
+export { default as Order } from './order';
+export type { IOrder, IOrderStatus } from './order';

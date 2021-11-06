@@ -36,4 +36,8 @@ export const getByShopSchema = {
   params: Joi.object({
     id: Joi.string().required(),
   }),
+  query: Joi.object({
+    limit: Joi.number().optional(),
+    page: Joi.number().optional(),
+  }),
 };

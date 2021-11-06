@@ -7,6 +7,7 @@ import category from './category.route';
 import uploadRoute from './upload.route';
 import shopRoute from './shop.route';
 import productRoute from './product.route';
+import orderRoute from './order.route';
 
 const router = express.Router();
 
@@ -17,5 +18,6 @@ router.use('/categories', category);
 router.use('/uploads', uploadRoute);
 router.use('/shops', shopRoute);
 router.use('/products', productRoute);
+router.use('/orders', orderRoute);
 
 export default router;
