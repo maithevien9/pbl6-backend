@@ -1,5 +1,5 @@
 import httpStatus from 'http-status';
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcrypt';
 import moment from 'moment';
 
 import configs from '../configs';

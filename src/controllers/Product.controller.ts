@@ -8,6 +8,14 @@ type IRequestBodyCreateProduct = Omit<IProduct, 'createdAt' | 'updatedAt'>;
 
 type IRequestBodyUpdateProduct = Omit<IProduct, 'createdAt' | 'updatedAt'>;
 
+interface IRequestBodyGetOneProduct {
+  id: string;
+}
+
+interface IRequestBodyGetAllProduct {
+  category: string;
+}
+
 class ShopController {
   static create = async (
     req: Request<IRequestBodyCreateProduct, Query, Params>,
@@ -41,18 +49,35 @@ class ShopController {
   };
 
   static getAll = async (
-    req: Request<never, Query, Params>,
+    req: Request<IRequestBodyGetAllProduct, Query, Params>,
     res: Response,
     next: NextFunction,
   ): Promise<void> => {
     try {
       const shops = await ProductService.getAll({
-        pagination: {
+        query: {
           limit: Number(req.query.limit),
           skip: req.skip || 0,
+          category: req.query.category as string,
         },
       });
       res.json(shops);
+    } catch (e) {
+      return next(e);
+    }
+  };
+
+  static getOne = async (
+    req: Request<IRequestBodyGetOneProduct, Query, Params>,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
+    try {
+      const product = await ProductService.getOne({
+        id: req.params.id,
+      });
+
+      res.json(product);
     } catch (e) {
       return next(e);
     }

@@ -11,13 +11,25 @@ interface IUpdateProductParams {
   body: Omit<IProduct, 'createdAt' | 'updatedAt'>;
 }
 
+interface IGetProductsParams {
+  query: {
+    limit: number;
+    skip: number;
+    category?: string;
+  };
+}
+
 interface IGetProductParams {
-  pagination: Express.Pagination;
+  id: string;
 }
 
 interface IGetProductByShopParams {
   shopId: string;
   pagination: Express.Pagination;
+}
+
+interface IProductConditionGetAll {
+  category?: string;
 }
 class ShopService {
   static create = async ({ body }: ICreateProductParams): Promise<IProduct> => {
@@ -51,11 +63,33 @@ class ShopService {
     return productUpdated;
   };
 
+  static getOne = async ({ id }: IGetProductParams): Promise<IProduct> => {
+    const product = await Product.findById(id).populate([
+      { path: 'shop', select: 'name avatar address' },
+      { path: 'category', select: 'name' },
+    ]);
+
+    if (!product) {
+      throw new APIError({
+        status: httpStatus.NOT_FOUND,
+        message: 'Product not found',
+      });
+    }
+
+    return product;
+  };
+
   static getAll = async ({
-    pagination,
-  }: IGetProductParams): Promise<IProduct[]> => {
-    const { limit, skip } = pagination;
-    return Product.find()
+    query,
+  }: IGetProductsParams): Promise<IProduct[]> => {
+    const { limit, skip, category } = query;
+    const productConditions: IProductConditionGetAll = {};
+
+    if (category) {
+      productConditions.category = category;
+    }
+
+    return Product.find({ ...productConditions })
       .limit(limit)
       .skip(skip)
       .sort({ createdAt: -1 })
@@ -71,7 +105,6 @@ class ShopService {
     pagination,
   }: IGetProductByShopParams): Promise<IProduct[]> => {
     const { limit, skip } = pagination;
-    console.log(shopId);
     return Product.find({ shop: shopId })
       .limit(limit)
       .skip(skip)

@@ -1,6 +1,6 @@
 import { Document, Schema, model } from 'mongoose';
 
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcrypt';
 
 export interface IUser extends Document {
   _id: string;
@@ -62,6 +62,9 @@ const UserSchema = new Schema(
     phoneNumber: {
       type: String,
     },
+    avatar: {
+      type: String,
+    },
     isVerify: {
       type: Boolean,
       default: false,
@@ -84,7 +87,10 @@ UserSchema.methods.transform = function () {
     'email',
     'fullName',
     'role',
+    'gender',
+    'phoneNumber',
     'avatar',
+    'address',
     'createdAt',
     'updatedAt',
   ];

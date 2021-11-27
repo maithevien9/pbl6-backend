@@ -5,3 +5,4 @@ export { default as UploadService } from './upload.service';
 export { default as ShopService } from './shop.service';
 export { default as ProductService } from './product.service';
 export { default as OrderService } from './order.service';
+export { default as UserService } from './user.service';

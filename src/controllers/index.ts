@@ -5,3 +5,4 @@ export { default as UploadController } from './upload.controller';
 export { default as ShopController } from './shop.controller';
 export { default as ProductController } from './Product.controller';
 export { default as OrderController } from './order.controller';
+export { default as UserController } from './user.controller';

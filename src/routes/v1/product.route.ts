@@ -7,6 +7,7 @@ import {
   createProductSchema,
   getProductsSchema,
   updateProductSchema,
+  getProductSchema,
 } from '../../validations/product.validation';
 
 const router = express.Router();
@@ -21,6 +22,10 @@ router
 
 router
   .route('/:id')
+  .get(
+    [AuthMiddleware.requireAuth, validate(getProductSchema)],
+    ProductController.getOne,
+  )
   .put(
     [AuthMiddleware.requireAuth, validate(updateProductSchema)],
     ProductController.update,

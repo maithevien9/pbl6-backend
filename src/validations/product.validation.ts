@@ -8,6 +8,7 @@ export const createProductSchema = {
     avatar: Joi.string().required(),
     photos: Joi.array().items(Joi.string()).optional(),
     shop: Joi.string().required(),
+    description: Joi.string().required(),
   }),
 };
 
@@ -22,6 +23,7 @@ export const updateProductSchema = {
     avatar: Joi.string().optional(),
     photos: Joi.array().items(Joi.string()).optional(),
     shop: Joi.string().optional(),
+    description: Joi.string().optional(),
   }),
 };
 
@@ -29,6 +31,7 @@ export const getProductsSchema = {
   query: Joi.object({
     limit: Joi.number().optional(),
     page: Joi.number().optional(),
+    category: Joi.string().optional(),
   }),
 };
 
@@ -39,5 +42,11 @@ export const getByShopSchema = {
   query: Joi.object({
     limit: Joi.number().optional(),
     page: Joi.number().optional(),
+  }),
+};
+
+export const getProductSchema = {
+  params: Joi.object({
+    id: Joi.string().required(),
   }),
 };
