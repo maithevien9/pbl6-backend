@@ -110,8 +110,8 @@ class ShopController {
         requestId: requestId as string,
       };
 
-      const payUrl = await OrderService.paymentNotification(data);
-      res.json(payUrl);
+      await OrderService.paymentNotification(data);
+      res.end();
     } catch (e) {
       return next(e);
     }
