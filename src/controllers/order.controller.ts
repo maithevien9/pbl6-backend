@@ -8,6 +8,10 @@ type IRequestBodyCreateOrder = Omit<IOrder, 'createdAt' | 'updatedAt'>;
 
 type IRequestBodyUpdateOrder = Omit<IOrder, 'createdAt' | 'updatedAt'>;
 
+interface IRequestPaymentOrder {
+  id: string;
+}
+
 class ShopController {
   static create = async (
     req: Request<IRequestBodyCreateOrder, Query, Params>,
@@ -73,6 +77,41 @@ class ShopController {
         },
       });
       res.json(shops);
+    } catch (e) {
+      return next(e);
+    }
+  };
+
+  static payment = async (
+    req: Request<IRequestPaymentOrder, Query, Params>,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
+    try {
+      const payUrl = await OrderService.payment({
+        orderId: req.params.id,
+      });
+      res.json(payUrl);
+    } catch (e) {
+      return next(e);
+    }
+  };
+
+  static paymentNotification = async (
+    req: Request<never, Query, Params>,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
+    try {
+      const { message, requestId } = req.body;
+
+      const data = {
+        message: message as string,
+        requestId: requestId as string,
+      };
+
+      const payUrl = await OrderService.paymentNotification(data);
+      res.json(payUrl);
     } catch (e) {
       return next(e);
     }

@@ -18,3 +18,6 @@ export type { IShop } from './shop';
 
 export { default as Order } from './order';
 export type { IOrder, IOrderStatus } from './order';
+
+export { default as Bill } from './bill';
+export type { IBill } from './bill';

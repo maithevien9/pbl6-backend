@@ -1,6 +1,7 @@
 import httpStatus from 'http-status';
-import { IOrder, Order, IUser } from '../models';
+import { IOrder, Order, IUser, Bill } from '../models';
 import APIError from '../utils/APIError';
+import handlePayMoMo from '../utils/handlePayMoMo';
 
 interface ICreateOrderParams {
   user: IUser;
@@ -20,6 +21,16 @@ interface IGetOrderByUserParams {
   user: IUser;
   pagination: Express.Pagination;
 }
+
+interface IPaymentOrderParams {
+  orderId: string;
+}
+
+interface INotification {
+  message: string;
+  requestId: string;
+}
+
 class OrderService {
   static create = async ({
     user,
@@ -100,6 +111,33 @@ class OrderService {
         },
       ])
       .lean();
+  };
+
+  static payment = async ({
+    orderId,
+  }: IPaymentOrderParams): Promise<{ payUrl: unknown }> => {
+    const order = await Order.findById(orderId);
+
+    if (!order) {
+      throw new APIError({
+        message: 'Order not found',
+        status: httpStatus.NOT_FOUND,
+      });
+    }
+
+    const payUrl = await handlePayMoMo(order._id);
+    return { payUrl };
+  };
+
+  static paymentNotification = async ({
+    message,
+    requestId,
+  }: INotification): Promise<void> => {
+    const bill = await Bill.findOne({ requestId });
+
+    if (message === 'Success') {
+      await Order.findOneAndUpdate({ _id: bill?.order }, { status: 'paid' });
+    }
   };
 }
 

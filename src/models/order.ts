@@ -14,6 +14,7 @@ export type IOrderStatus =
   | typeof ORDER_STATUS.PENDING
   | typeof ORDER_STATUS.SHIPPING
   | typeof ORDER_STATUS.DONE
+  | typeof ORDER_STATUS.PAID
   | typeof ORDER_STATUS.OVER;
 
 export const ORDER_STATUS = {
@@ -21,6 +22,7 @@ export const ORDER_STATUS = {
   SHIPPING: 'shipping',
   DONE: 'done',
   OVER: 'over',
+  PAID: 'paid',
 };
 
 const ProductSchema = new Schema(
@@ -50,6 +52,7 @@ const ProductSchema = new Schema(
         ORDER_STATUS.PENDING,
         ORDER_STATUS.SHIPPING,
         ORDER_STATUS.DONE,
+        ORDER_STATUS.PAID,
         ORDER_STATUS.OVER,
       ],
     },

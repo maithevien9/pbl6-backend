@@ -48,4 +48,16 @@ export default {
   cloudinary: CLOUDINARY,
   sendGrid: SENDGRID,
   apiEndpoint: API_END_POINT || 'http://localhost:8000/v1',
+  MOMO_HOSTNAME: process.env.MOMO_HOSTNAME,
+  MOMO_END_POINT: process.env.MOMO_END_POINT,
+  MOMO_PATH: process.env.MOMO_PATH,
+  MOMO_PARTNER_CODE: process.env.MOMO_PARTNER_CODE,
+  MOMO_ACCESS_KEY: process.env.MOMO_ACCESS_KEY,
+  MOMO_SECRET_KEY:
+    process.env.MOMO_SECRET_KEY || 'cgMfyzdwNsttVlLQkLjGnbwO42WuWDj0',
+  MOMO_RETURN_URL: process.env.MOMO_RETURN_URL,
+  MOMO_REQUEST_TYPE: process.env.MOMO_REQUEST_TYPE,
+  MOMO_NOTIFY_URL: process.env.MOMO_NOTIFY_URL,
+  MOMO_HOST_NAME: process.env.MOMO_HOST_NAME,
+  MOMO_PORT: process.env.MOMO_PORT,
 };

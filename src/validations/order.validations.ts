@@ -37,3 +37,29 @@ export const getByUserSchema = {
     page: Joi.number().optional(),
   }),
 };
+
+export const payment = {
+  params: Joi.object({
+    id: Joi.string().required(),
+  }),
+};
+
+export const paymentNotification = {
+  body: Joi.object({
+    partnerCode: Joi.string(),
+    accessKey: Joi.string(),
+    requestId: Joi.string(),
+    amount: Joi.string(),
+    orderId: Joi.string(),
+    orderInfo: Joi.string(),
+    orderType: Joi.string(),
+    errorCode: Joi.string(),
+    message: Joi.string(),
+    transId: Joi.string(),
+    localMessage: Joi.string(),
+    responseTime: Joi.date(),
+    signature: Joi.string(),
+    extraData: Joi.string(),
+    payType: Joi.string(),
+  }),
+};
