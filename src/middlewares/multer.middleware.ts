@@ -18,7 +18,11 @@ class MulterMiddleware {
     storage: MulterMiddleware.storage,
     limits: { fileSize: 1024 * 1024 },
     fileFilter(req, file, cb: ICallback) {
-      if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/gi)) {
+      if (
+        !file.originalname.match(
+          /\.(jpg|jpeg|png|gif|doc|pdf|xlsx|docx|zip)$/gi,
+        )
+      ) {
         return cb(new Error('Only image files are allowed!'), false);
       }
       cb(null, true);
