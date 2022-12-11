@@ -18,6 +18,7 @@ class Cloudinary {
       const res = await cloudinary.v2.uploader.upload(file, {
         folder: configs.cloudinary.folder,
         use_filename: true,
+        resource_type: 'raw',
       });
 
       fs.unlinkSync(file);
